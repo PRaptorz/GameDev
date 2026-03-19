@@ -18,6 +18,8 @@ public class MyGame extends ApplicationAdapter {
 
         // TODO 4: Write a for-loop to instantiate 5 Enemy objects at different 
         //         starting Y-coordinates and add them to activeObjects.
+
+        // private ArrayList<GameObject> 
         
     }
 

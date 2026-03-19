@@ -1,8 +1,32 @@
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+
 public class Player extends GameObject{
 
-    public Player(double x, double y, int width, int height, int speed) {
-        super(x, y, 50, 50, 200);
-        //TODO Auto-generated constructor stub
+    private int speed;
+
+
+    public Player(double x, double y) {
+        super(x, y, 50, 50, "assests/ship.png");
+        speed = 200;
+    }
+    public void move(double deltaTime) {
+
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
+            setX(getX()- speed * deltaTime);
+        }
+
+        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+            setX(getX()- speed * deltaTime);
+        }
+
+        if(Gdx.input.isKeyPressed(Input.Keys.UP)){
+            setY(getY()- speed * deltaTime);
+        }
+
+        if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
+            setY(getY()- speed * deltaTime);
+        }
     }
     
 }
