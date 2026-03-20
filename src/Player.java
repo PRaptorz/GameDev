@@ -7,7 +7,7 @@ public class Player extends GameObject{
 
 
     public Player(double x, double y) {
-        super(x, y, 50, 50, "assests/ship.png");
+        super(x, y, 50, 50, "assets/ship.png");
         speed = 200;
     }
     public void move(double deltaTime) {

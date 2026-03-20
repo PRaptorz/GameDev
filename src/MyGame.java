@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class MyGame extends ApplicationAdapter {
     private SpriteBatch batch;
     private ArrayList<GameObject> activeObjects;
+    private Player p1;
 
     @Override
     public void create() {
@@ -14,12 +15,20 @@ public class MyGame extends ApplicationAdapter {
         activeObjects = new ArrayList<GameObject>();
 
         // TODO 3: Instantiate your Player subclass and add it to activeObjects.
+        p1 = new Player(200, 50);
+        activeObjects.add(p1);
 
 
         // TODO 4: Write a for-loop to instantiate 5 Enemy objects at different 
         //         starting Y-coordinates and add them to activeObjects.
 
-        // private ArrayList<GameObject> 
+       for(int i = 0; i < 5; i++){
+        double x= 400;
+        double y= 100 + (i * 60);
+
+        Enemy enemy = new Enemy(x, y, 50, 50, "assets/fish_blue.png");
+        activeObjects.add(enemy);
+       }
         
     }
 
@@ -39,10 +48,18 @@ public class MyGame extends ApplicationAdapter {
         // TODO 5: Write a standard or enhanced for-loop to iterate through activeObjects.
         // For each object, call its move() method.
 
+        for(GameObject obj : activeObjects){
+            obj.move(deltaTime);
+        }
+
         
         //Note: Anything drawn must be between .begin() and .end()
         batch.begin();
         // TODO 6: Write a loop to iterate through activeObjects and call draw(batch).
+
+        for(GameObject obj : activeObjects){
+            obj.draw(batch);
+        }
 
 
         batch.end();
@@ -53,6 +70,16 @@ public class MyGame extends ApplicationAdapter {
         // See the cheat sheet for the overlap method!
         // NOTE: If you are removing items from an ArrayList, how must you structure 
         // your for-loop to avoid skipping elements?
+
+        for(int i = activeObjects.size() - 1; i >= 0; i--){
+            GameObject obj = activeObjects.get(i);
+
+            if(obj instanceof Enemy){
+                if(obj.getHitBox().overlaps(p1.getHitBox())){
+                    activeObjects.remove(i);
+                }
+            }
+        }
 
     }
     
